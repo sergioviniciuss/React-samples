@@ -1,3 +1,6 @@
+var React = require ('react');
+var ThumbnailList = require ('./thumbnail-list');
+
 var options = {
 	thumbnailData: [{
 		title: 'Show Courses',
@@ -20,4 +23,4 @@ var element = React.createElement(ThumbnailList, options);
 
 //when we ask react to render this class, we will tell it
 //where to place the rendered element in the dom
-ReactDOM.render(element, document.querySelector('.target'));
+React.render(element, document.querySelector('.target'));
