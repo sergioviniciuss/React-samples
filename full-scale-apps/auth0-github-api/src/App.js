@@ -33,9 +33,11 @@ class App extends Component {
           return;
         }
         // console.log(profile);
+        console.log("idtoken " + authResult.idToken);
         this.setProfile(authResult.idToken, profile);
       });
     });
+    this.getProfile();
   }
 
   setProfile(idToken, profile) {
@@ -43,21 +45,55 @@ class App extends Component {
     localStorage.setItem('profile', JSON.stringify(profile));
 
     this.setState({
-      idToken: localStorage.getItem('itToken'),
+      idToken: localStorage.getItem('idToken'),
       profile: JSON.parse(localStorage.getItem('profile'))
     })
   }
+
+  getProfile() {
+    if (!!localStorage.getItem('idToken')) {
+      this.setState({
+        idToken: localStorage.getItem('itToken'),
+        profile: JSON.parse(localStorage.getItem('profile'))
+      }, () => {
+        console.log(this.state)
+      })
+    }
+  }
+
   showLock() {
     this.lock.show();
   }
 
+    logout() {
+    this.setState({
+      idToken: '',
+      profile: ''
+    }, () => {
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('profile');
+    })
+  }
+
   render() {
+    let pageContent;
+
+    if (this.state.idToken) {
+      pageContent = <Github />
+    } else {
+      pageContent = "Click on Login to view GitHub Viewer"
+    }
+
     return (
       <div className="App">
         <Header
+          lock={this.lock}
+          idToken={this.state.idToken}
+          onLogout={this.logout.bind(this)}
           onLogin={this.showLock.bind(this)}
          />
-        <Github />
+         {pageContent}
+        
       </div>
     );
   }
