@@ -24,7 +24,7 @@
 }
 
 body {
-  background: #27ae60;
+  background: black;
 }
 
 a {
@@ -74,11 +74,14 @@ a {
   background: #fff;
   text-align: center;
   padding: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .github-profile-info img {
   width: 150px;
   height: 150px;
   display: block;
+  border-radius: 50%;
 }
 .github-profile-info h2 a {
   font-size: 30px;
@@ -92,6 +95,8 @@ a {
   background: #34495e;
   text-align: center;
   padding: 1.875rem .9375rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .github-profile-state ul {
   direction: ltr;
